@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.10.0](https://www.github.com/protobufjs/protobuf.js/compare/v6.9.0...v6.10.0) (2020-06-17)
+
+
+### Features
+
+* add configurable Root.prototype.fetch ([ad3cffd](https://www.github.com/protobufjs/protobuf.js/commit/ad3cffdc5a54a7c94830674270d3386e1a2b58fc))
+
+
+### Bug Fixes
+
+* google.protobuf.Any type_url fixes ([#1068](https://www.github.com/protobufjs/protobuf.js/issues/1068)) ([192f5f1](https://www.github.com/protobufjs/protobuf.js/commit/192f5f12d071fa534ac625290d4666c839a46a9e))
+* properly parse empty messages in options ([#1429](https://www.github.com/protobufjs/protobuf.js/issues/1429)) ([7fbc79f](https://www.github.com/protobufjs/protobuf.js/commit/7fbc79f11d89b263dafc8f332ccba59a8d181fca))
+* updated isNode check ([#1221](https://www.github.com/protobufjs/protobuf.js/issues/1221)) ([#1363](https://www.github.com/protobufjs/protobuf.js/issues/1363)) ([5564e7b](https://www.github.com/protobufjs/protobuf.js/commit/5564e7b5f07d3eab99762528e8ce88507af5a5a3))
+
 ## [6.9.0](https://www.github.com/protobufjs/protobuf.js/compare/6.8.8...v6.9.0) (2020-04-17)
 
 
