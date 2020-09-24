@@ -207,7 +207,7 @@ Type.generateConstructor = function generateConstructor(mtype) {
         else if (!field.bytes)
             defaultFields.push(field);
     if (defaultFields.length) {
-        for (i = 0; i < defaultFields.length; ++i) {
+        for (var i = 0; i < defaultFields.length; ++i) {
             var field = defaultFields[i],
                 prop  = util.safeProp(field.name);
             gen ("this%s=%j", prop, field.typeDefault); // also messages (=null)
