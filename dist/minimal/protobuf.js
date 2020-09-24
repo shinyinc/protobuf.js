@@ -1,6 +1,6 @@
 /*!
- * protobuf.js v6.8.9 (c) 2016, daniel wirtz
- * compiled fri, 17 apr 2020 21:58:51 utc
+ * protobuf.js v6.9.1 (c) 2016, daniel wirtz
+ * compiled thu, 24 sep 2020 10:22:59 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -1786,7 +1786,7 @@ util.emptyObject = Object.freeze ? Object.freeze({}) : /* istanbul ignore next *
  * @type {boolean}
  * @const
  */
-util.isNode = Boolean(util.global.process && util.global.process.versions && util.global.process.versions.node);
+util.isNode = Boolean(process && process.versions && process.versions.node);
 
 /**
  * Tests if the specified value is an integer.
