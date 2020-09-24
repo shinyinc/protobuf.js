@@ -189,6 +189,12 @@ Object.defineProperties(Type.prototype, {
     }
 });
 
+function isFieldOneOf(oneofs, keys, field) {
+    var name = field.name;
+    for (var i = 0; i < keys.length; ++i) if (-1 !== oneofs[keys[i]].oneof.indexOf(name)) return true;
+    return false;
+}
+
 /**
  * Generates a constructor function for the specified type.
  * @param {Type} mtype Message type
@@ -197,13 +203,15 @@ Object.defineProperties(Type.prototype, {
 Type.generateConstructor = function generateConstructor(mtype) {
     /* eslint-disable no-unexpected-multiline */
     var gen = util.codegen(["p"], mtype.name);
+    var oneofs = mtype.oneofs;
+    var keys = oneofs && Object.keys(oneofs);
     // explicitly initialize mutable object/array fields so that these aren't just inherited from the prototype
     for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
         if ((field = mtype._fieldsArray[i]).map) gen
             ("this%s={}", util.safeProp(field.name));
         else if (field.repeated) gen
             ("this%s=[]", util.safeProp(field.name));
-        else if (!field.bytes) gen
+        else if (!field.bytes && (!oneofs || !isFieldOneOf(oneofs, keys, field))) gen
             ("this%s=%j", util.safeProp(field.name), field.typeDefault); // also messages (=null)
     return gen
     ("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)") // omit undefined or null
