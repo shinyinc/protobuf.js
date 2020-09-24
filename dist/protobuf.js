@@ -1,6 +1,6 @@
 /*!
  * protobuf.js v6.9.0 (c) 2016, daniel wirtz
- * compiled thu, 24 sep 2020 18:53:06 utc
+ * compiled thu, 24 sep 2020 19:10:49 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -6559,7 +6559,10 @@ Type.generateConstructor = function generateConstructor(mtype) {
             ("this%s={}", util.safeProp(field.name));
         else if (field.repeated) gen
             ("this%s=[]", util.safeProp(field.name));
-        else if (!field.bytes && (!oneofs || !isFieldOneOf(oneofs, keys, field))) gen
+        else if (field.bytes || (oneofs && isFieldOneOf(oneofs, keys, field))) /* noop */;
+        else if (field.long) gen
+            ("this%s=0", util.safeProp(field.name));
+        else gen
             ("this%s=%j", util.safeProp(field.name), field.typeDefault); // also messages (=null)
     return gen
     ("if(p)for(var ks=Object.keys(p),i=0;i<ks.length;++i)if(p[ks[i]]!=null)") // omit undefined or null
