@@ -87,7 +87,8 @@ util.ucFirst = function ucFirst(str) {
     return str.charAt(0).toUpperCase() + str.substring(1);
 };
 
-var camelCaseRe = /_([a-z])/g;
+// Patch for camelCase bug: https://github.com/protobufjs/protobuf.js/issues/1009
+var camelCaseRe = /_+([a-zA-Z0-9])/g;
 
 /**
  * Converts a string to camel case.
